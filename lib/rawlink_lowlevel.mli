@@ -4,11 +4,6 @@ val get_bpf_hdr_bh_usec : Cstruct.t -> Cstruct.uint32
 val get_bpf_hdr_bh_caplen : Cstruct.t -> Cstruct.uint32
 val get_bpf_hdr_bh_datalen : Cstruct.t -> Cstruct.uint32
 val get_bpf_hdr_bh_hdrlen : Cstruct.t -> Cstruct.uint16
-val set_bpf_hdr_bh_sec : Cstruct.t -> Cstruct.uint32 -> unit
-val set_bpf_hdr_bh_usec : Cstruct.t -> Cstruct.uint32 -> unit
-val set_bpf_hdr_bh_caplen : Cstruct.t -> Cstruct.uint32 -> unit
-val set_bpf_hdr_bh_datalen : Cstruct.t -> Cstruct.uint32 -> unit
-val set_bpf_hdr_bh_hdrlen : Cstruct.t -> Cstruct.uint16 -> unit
 type driver = AF_PACKET | BPF
 external opensock :
   ?filter:string -> ?promisc:bool -> string -> Unix.file_descr
