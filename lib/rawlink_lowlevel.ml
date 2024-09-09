@@ -16,14 +16,28 @@
 
 (* This module is supposed to be used internally only *)
 
-[%%cstruct
-type bpf_hdr = {
-    bh_sec: uint32_t;
-    bh_usec: uint32_t;
-    bh_caplen: uint32_t;
-    bh_datalen: uint32_t;
-    bh_hdrlen: uint16_t;
-} [@@host_endian]]
+(* Hand picked from:
+       [%%cstruct
+       type bpf_hdr = {
+           bh_sec: uint32_t;
+           bh_usec: uint32_t;
+           bh_caplen: uint32_t;
+           bh_datalen: uint32_t;
+           bh_hdrlen: uint16_t;
+       } [@@host_endian]]
+   *)
+let sizeof_bpf_hdr = 18
+let get_bpf_hdr_bh_sec v = Cstruct.HE.get_uint32 v 0
+let get_bpf_hdr_bh_usec v = Cstruct.HE.get_uint32 v 4
+let get_bpf_hdr_bh_caplen v = Cstruct.HE.get_uint32 v 8
+let get_bpf_hdr_bh_datalen v = Cstruct.HE.get_uint32 v 12
+let get_bpf_hdr_bh_hdrlen v = Cstruct.HE.get_uint16 v 16
+let set_bpf_hdr_bh_sec v x = Cstruct.HE.set_uint32 v 0 x
+let set_bpf_hdr_bh_usec v x = Cstruct.HE.set_uint32 v 4 x
+let set_bpf_hdr_bh_caplen v x = Cstruct.HE.set_uint32 v 8 x
+let set_bpf_hdr_bh_datalen v x = Cstruct.HE.set_uint32 v 12 x
+let set_bpf_hdr_bh_hdrlen v x = Cstruct.HE.set_uint16 v 16 x
+(* omitted: hexdump_bpf_hdr_to_buffer *)
 
 type driver =
   | AF_PACKET
