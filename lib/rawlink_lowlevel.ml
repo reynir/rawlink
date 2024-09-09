@@ -26,13 +26,10 @@
            bh_hdrlen: uint16_t;
        } [@@host_endian]]
    *)
-let sizeof_bpf_hdr = 18
-let get_bpf_hdr_bh_sec v = Cstruct.HE.get_uint32 v 0
-let get_bpf_hdr_bh_usec v = Cstruct.HE.get_uint32 v 4
 let get_bpf_hdr_bh_caplen v = Cstruct.HE.get_uint32 v 8
 let get_bpf_hdr_bh_datalen v = Cstruct.HE.get_uint32 v 12
 let get_bpf_hdr_bh_hdrlen v = Cstruct.HE.get_uint16 v 16
-(* omitted: all setters, hexdump_bpf_hdr_to_buffer *)
+(* omitted: all setters, get_bpf_hdr_bh_sec, get_bpf_hdr_bh_usec, hexdump_bpf_hdr_to_buffer *)
 
 type driver =
   | AF_PACKET
